@@ -61,16 +61,16 @@ namespace Proyecto2_Album
                 {
                     if (estampas[i].Estado == 1)
                     {
-                        Console.WriteLine("La estampa " + estampas[i].Codigo + " = EN");
+                        Console.WriteLine("La estampa " + estampas[i].Codigo + " = ENCONTRADA");
                     }
                     else
                     {
-                        Console.WriteLine("La estampa " + estampas[i].Codigo + " = RE");
+                        Console.WriteLine("La estampa " + estampas[i].Codigo + " = REPETIDA");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("La estampa " + estampas[i].Codigo + " = FA");
+                    Console.WriteLine("La estampa " + estampas[i].Codigo + " = FALTANTE");
                 }
             }
         }
@@ -82,11 +82,11 @@ namespace Proyecto2_Album
             {
                 if (estampas[i].Estado == UnEstado)
                 {
-                    Console.WriteLine("Estampa " + estampas[i].Codigo);
+                    Console.WriteLine(estampas[i].Codigo);
                     Cantidad++;
                 }
             }
-            Console.WriteLine("--------------------");
+            Console.WriteLine("");
             Console.WriteLine("En total son " + Cantidad);
         }
         public void Mostrar_Categoria(string unCategoria, int UnEstado)
@@ -94,13 +94,46 @@ namespace Proyecto2_Album
             int Cantidad = 0;
             for (int i = 0; i < TotalEstampas; i++)
             {
-                if (estampas[i].Categoria == unCategoria && estampas[i].Estado == 0)
+                if (estampas[i].Categoria == unCategoria && estampas[i].Estado == UnEstado)
                 {
-                     Console.WriteLine("La estampa " + estampas[i].Codigo + " = RE");
+                     Console.WriteLine(estampas[i].Codigo);
                     Cantidad++;
                 }
             }
-            Console.WriteLine("--------------------");
+            Console.WriteLine("");
+            Console.WriteLine("En total son " + Cantidad);
+        }
+
+        public void Mostrar_Rango(string inicioCodigo, string finCodigo, int UnEstado)
+        {
+            int Cantidad = 0;
+            bool verificador = true;
+            int i = 0;
+            while (verificador == true)
+            {
+                if (estampas[i].Codigo == inicioCodigo)
+                {
+                    while (estampas[i].Codigo != finCodigo)
+                    {
+                        if (estampas[i].Estado == UnEstado) {
+                            Console.WriteLine(estampas[i].Codigo);
+                            Cantidad++;
+                        }
+                        i++;
+                    }
+                    if (estampas[i].Estado == UnEstado)
+                    {
+                        Console.WriteLine(estampas[i].Codigo);
+                        Cantidad++;
+                    }
+                    verificador = false;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+            Console.WriteLine("");
             Console.WriteLine("En total son " + Cantidad);
         }
 
